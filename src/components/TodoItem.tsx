@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { CheckInput } from "./Atoms/Input";
 
 export const Wrapper = styled.label({
   display: "flex",
@@ -30,19 +31,6 @@ const Group = styled.div({
   alignItems: "center",
 });
 
-const Button = styled.button({});
-
-const Input = styled.input<{ checked: boolean }>(({ checked }) => ({
-  width: 315,
-  textDecoration: checked ? "line-through" : "none",
-  border: "none",
-  padding: 10,
-  fontSize: 18,
-  flex: 1,
-  backgroundColor: "#eeeeee",
-  borderRadius: 3,
-}));
-
 interface TodoItemProps extends Todo {
   toggleComplete: (checked: boolean, index: number) => void;
   deleteToDo: (index: number) => void;
@@ -67,7 +55,7 @@ export const TodoItem = ({
           onChange={(e) => toggleComplete(e.target.checked, index)}
         />
         <Label>
-          <Input
+          <CheckInput
             type="text"
             checked={checked}
             value={description}
@@ -75,7 +63,7 @@ export const TodoItem = ({
           />
         </Label>
       </Group>
-      <Button onClick={() => deleteToDo(index)}>x</Button>
+      <button onClick={() => deleteToDo(index)}>x</button>
     </Wrapper>
   );
 };

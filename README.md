@@ -1,30 +1,33 @@
-# React + TypeScript + Vite
+# To do list with React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![](https://github.com/hannahpun/todo-list-react/ToDoList.gif)
 
-Currently, two official plugins are available:
+This is the side project for simple to do list, have some features belows
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Add todo
+- Delete todo
+- Edit Todo
+- Mark as completed or uncompleted
+- Search todos
+- Can sort tasks by time by created time
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
+## How to run
 
 ```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+# install dependencies
+npm install
+
+# serve with hot reload at localhost:8080
+npm run dev
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Codebase architecture
+
+```
+src
+  ├ assets // like img
+  ├ components
+  | ├ Atom // Use Atomic Design concept
+  | ├ xxx // others components
+  ├ App.tsx // mainly file handle data
+```

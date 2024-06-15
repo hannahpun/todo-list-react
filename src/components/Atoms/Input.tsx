@@ -9,3 +9,14 @@ export const Input = styled.input({
   marginBottom: 8,
   fontSize: 18,
 });
+
+export const CheckInput = styled.input<{ checked: boolean }>(({ checked }) => ({
+  width: 315,
+  textDecoration: checked ? "line-through" : "none",
+  border: "none",
+  padding: 10,
+  fontSize: 18,
+  flex: 1,
+  backgroundColor: "#eeeeee",
+  borderRadius: 3,
+}));

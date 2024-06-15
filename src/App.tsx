@@ -4,6 +4,7 @@ import styled from "@emotion/styled";
 import { AddToDo } from "./components/AddToDo";
 import { TodoItem } from "./components/TodoItem";
 import { TodoList } from "./components/TodoList";
+
 import "./App.css";
 
 const Wrapper = styled.div({
@@ -24,7 +25,17 @@ export const Header = styled.div({
 });
 
 function App() {
-  const [todos, setTodos] = useState<Todo[]>([]);
+  const initTask = [
+    {
+      id: 0,
+      description: "Do homework",
+      checked: false,
+      created_at: 0,
+      completed_at: 0,
+    },
+  ];
+  const [todos, setTodos] = useState<Todo[]>(initTask);
+  const [serachVal, setSerachVal] = useState("");
 
   const addTodo = (description: string) => {
     if (!description) {
@@ -52,7 +63,12 @@ function App() {
       completed_at: checked ? new Date().getTime() : 0,
     };
 
-    setTodos(updateTodos);
+    // completed tasks sort by asc; uncompleted tasks sort by desc
+    setTodos(
+      updateTodos.sort(
+        (a, b) => a.completed_at - b.completed_at || b.created_at - a.created_at
+      )
+    );
   };
 
   const editToDo = (description: string, index: number) => {
@@ -75,11 +91,15 @@ function App() {
   return (
     <Wrapper>
       <Header>Todo List</Header>
-      <SearchBar />
+      <SearchBar serachVal={serachVal} setSerachVal={setSerachVal} />
       <AddToDo onAdd={addTodo} />
       <TodoList>
         {todos
-          .sort((a, b) => a.completed_at - b.completed_at || b.created_at - a.created_at)
+          .filter((todo) => {
+            return (
+              todo?.description.toLocaleLowerCase().indexOf(serachVal) !== -1
+            );
+          })
           .map((todo, index) => (
             <TodoItem
               {...todo}
