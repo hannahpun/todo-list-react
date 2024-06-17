@@ -10,7 +10,8 @@ This is the side project for simple to do list, have some features belows
 - Edit Todo
 - Mark as completed or uncompleted
 - Search todos
-- Can sort tasks by time by created time
+- The active todos sorted by created_at desc
+- The completed todos sorted by completed_at asc
 
 ## How to run
 

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { SearchBar } from "./components/SearchBar";
 import styled from "@emotion/styled";
 import { AddToDo } from "./components/AddToDo";
@@ -35,7 +35,16 @@ function App() {
     },
   ];
   const [todos, setTodos] = useState<Todo[]>(initTask);
+  const [filterTodos, setFilterTodos] = useState<Todo[]>([]);
   const [serachVal, setSerachVal] = useState("");
+
+  useEffect(() => {
+    let filterTodos = [...todos];
+    filterTodos = filterTodos.filter((todo) => {
+      return todo?.description.toLowerCase().includes(serachVal);
+    });
+    setFilterTodos(filterTodos);
+  }, [todos, serachVal]);
 
   const addTodo = (description: string) => {
     if (!description) {
@@ -94,22 +103,16 @@ function App() {
       <SearchBar serachVal={serachVal} setSerachVal={setSerachVal} />
       <AddToDo onAdd={addTodo} />
       <TodoList>
-        {todos
-          .filter((todo) => {
-            return (
-              todo?.description.toLocaleLowerCase().indexOf(serachVal) !== -1
-            );
-          })
-          .map((todo, index) => (
-            <TodoItem
-              {...todo}
-              key={index}
-              index={index}
-              toggleComplete={toggleComplete}
-              deleteToDo={deleteToDo}
-              editToDo={editToDo}
-            />
-          ))}
+        {filterTodos.map((todo, index) => (
+          <TodoItem
+            {...todo}
+            key={index}
+            index={index}
+            toggleComplete={toggleComplete}
+            deleteToDo={deleteToDo}
+            editToDo={editToDo}
+          />
+        ))}
       </TodoList>
     </Wrapper>
   );
