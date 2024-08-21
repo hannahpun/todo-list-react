@@ -14,7 +14,7 @@ const Wrapper = styled.div({
   width: 450,
 });
 
-export const Header = styled.div({
+export const Header = styled.h1({
   width: "100%",
   height: 150,
   fontSize: 60,
@@ -65,7 +65,7 @@ function App() {
 
   const toggleComplete = (checked: boolean, index: number) => {
     // handle the check/uncheck logic
-    let updateTodos = [...todos];
+    const updateTodos = [...todos];
     updateTodos[index] = {
       ...updateTodos[index],
       checked,
@@ -81,7 +81,7 @@ function App() {
   };
 
   const editToDo = (description: string, index: number) => {
-    let updateTodos = [...todos];
+    const updateTodos = [...todos];
     updateTodos[index] = {
       ...updateTodos[index],
       description,
@@ -91,7 +91,7 @@ function App() {
   };
 
   const deleteToDo = (index: number) => {
-    let updateTodos = [...todos];
+    const updateTodos = [...todos];
     updateTodos.splice(index, 1);
 
     setTodos(updateTodos);

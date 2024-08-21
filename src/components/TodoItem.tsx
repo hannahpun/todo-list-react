@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { CheckInput } from "./Atoms/Input";
 
-export const Wrapper = styled.label({
+export const Wrapper = styled.li({
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
@@ -47,7 +47,7 @@ export const TodoItem = ({
   deleteToDo,
 }: TodoItemProps) => {
   return (
-    <Wrapper>
+    <Wrapper data-testid="list">
       <Group>
         <Checkbox
           type="checkbox"
@@ -63,7 +63,7 @@ export const TodoItem = ({
           />
         </Label>
       </Group>
-      <button onClick={() => deleteToDo(index)}>x</button>
+      <button data-testid="delete" onClick={() => deleteToDo(index)}>x</button>
     </Wrapper>
   );
 };
